@@ -1,0 +1,25 @@
+{
+  "name": "orb-weaver-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "arangojs": "^5.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "buid": "sudo docker run -p 8529:8529 -e ARANGO_ROOT_PASSWORD=openSesame arangodb/arangodb:3.5.1",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Norlock/orb-weaver-server.git"
+  },
+  "author": "Joris Willems",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Norlock/orb-weaver-server/issues"
+  },
+  "homepage": "https://github.com/Norlock/orb-weaver-server#readme"
+}
