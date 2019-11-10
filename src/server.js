@@ -3,8 +3,8 @@ const readline = require('readline');
 
 const actions = {  
     INIT_DB: "1",
-    DROP_DB: "2", // TODO
-    CREATE_COLLECTION: "3",
+    DROP_DB: "2", 
+    LIST_DB: "3",
     IMPORT_COLLECTION: "4",
     LIST_COLLECTION: "5",
     EXIT: "0"
@@ -17,8 +17,8 @@ const rl = readline.createInterface({
 });
 
 function init() {  
-    rl.question("Database manager tool\n1: Initialise database\n2: Drop database\n"
-        + "3: Create collection\n4: Import collection\n5: List collection\n0: Exit program\n\n", (answer) => {  
+    rl.question("Database manager tool\n1: Initialise database\n2: Drop database\n3: List databases"
+        + "4: Import collection\n5: List collection\n0: Exit program\n\n", (answer) => {  
             switch (answer) {
                 case actions.INIT_DB:
                     dbMgr.createDatabase();
@@ -26,8 +26,8 @@ function init() {
                 case actions.DROP_DB:
                     dbMgr.dropDatabase();
                     break;
-                case actions.CREATE_COLLECTION:
-                    dbMgr.createCollection();
+                case actions.LIST_DB:
+                    dbMgr.listDatases();
                     break;
                 case actions.IMPORT_COLLECTION:
                     dbMgr.importCollection();
