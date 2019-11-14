@@ -17,8 +17,8 @@ export class DatabaseMgr {
 
     createCollection() {  
         this.db.useDatabase(constants.dbName);
-        this.collection = this.db.collection(constants.owCollection);
-        this.collection.create().then((result) => {  
+        const collection = this.db.collection(constants.owCollection);
+        collection.create().then((result) => {  
             console.log('Collection created', result);
         }, err => {  
             console.error('Failed to create collection:', err);

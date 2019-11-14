@@ -1,23 +1,10 @@
-const owCollection = "ow_collection", dbName = "orb_weaver_db";
+import {constants} from './constants';
 
 export class CollectionMgr {  
     constructor(db) {  
         this.db = db;
-        this.db.useDatabase(dbName);
-
-        const hasCollection = false; // TODO bepalen of dit goed is
-        if (hasCollection) {  
-            this.collection = this.db.collection(owCollection);
-        }
-    }
-
-    createCollection() {  
-        this.collection = this.db.collection(owCollection);
-        this.collection.create().then((result) => {  
-            console.log('Collection created', result);
-        }, err => {  
-            console.error('Failed to create collection:', err);
-        });   
+        this.db.useDatabase(constants.dbName);
+        this.collection = this.db.collection(constants.owCollection);
     }
 
     importCollection() {  
@@ -44,6 +31,16 @@ export class CollectionMgr {
             ]
         };
 
+        const gojiraNode = {  
+            _key: 'gojira',
+            name: "Gojira",
+            image: baseUrl + '/images/gojira-dark.jpg',
+            related: [
+                'insomnium',
+                'persefone'
+            ]
+        };
+
         const deathspellOmegaNode = {  
             _key: 'deathspellomega',
             name: "Deathspell Omega",
@@ -57,6 +54,7 @@ export class CollectionMgr {
         nodes.push(banNode);
         nodes.push(belakorNode);
         nodes.push(deathspellOmegaNode);
+        nodes.push(gojiraNode);
 
         this.collection.import(nodes, { overwrite: true }).then(
             result => console.log('Import complete', result),
@@ -65,9 +63,6 @@ export class CollectionMgr {
     }
 
     listCollection() {  
-        this.collection = this.db.collection(owCollection);
-
-        console.log(this.collection);
         this.collection.all().then(
             result => console.log('res', result),
             err => console.log('err', err)

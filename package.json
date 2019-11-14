@@ -2,7 +2,7 @@
   "name": "orb-weaver-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "dependencies": {
     "arangojs": "^5.8.0",
     "express": "^4.17.1"
@@ -13,7 +13,8 @@
   },
   "scripts": {
     "docker": "sudo /usr/bin/docker run -e ARANGO_ROOT_PASSWORD=openSesame --volumes-from arangodb-persist -p 8529:8529 arangodb",
-    "start": "node ./src/start.js",
+    "start": "node ./src/server.js",
+    "cli": "node ./src/start.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
