@@ -3,8 +3,7 @@ import {constants} from './constants';
 export class CollectionMgr {  
     constructor(db) {  
         this.db = db;
-        this.db.useDatabase(constants.dbName);
-        this.collection = this.db.collection(constants.owCollection);
+        this.owCollection = this.db.collection(constants.OW_COLLECTION);
     }
 
     importCollection() {  
@@ -56,15 +55,15 @@ export class CollectionMgr {
         nodes.push(deathspellOmegaNode);
         nodes.push(gojiraNode);
 
-        this.collection.import(nodes, { overwrite: true }).then(
+        this.owCollection.import(nodes, { overwrite: true }).then(
             result => console.log('Import complete', result),
             err => console.error('Import failed:', err)
         ); 
     }
 
     listCollection() {  
-        this.collection.all().then(
-            result => console.log('res', result),
+        this.owCollection.all().then(
+            result => console.log('res', result._result),
             err => console.log('err', err)
         );
     }

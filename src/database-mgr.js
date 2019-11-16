@@ -1,14 +1,19 @@
 import { Database } from "arangojs";
-import { constants } from "constants";
+import { constants } from "./constants.js";
 
+/**
+ * Class to manage database on an easy way. Create / delete / or show stored
+ * collections
+ **/
 export class DatabaseMgr {  
     constructor(username, password) {  
         this.db = new Database();
         this.db.useBasicAuth(username, password);
+        this.db.useDatabase(constants.DB_NAME);
     }
 
     createDatabase() {  
-        this.db.createDatabase(constants.dbName).then(() => {  
+        this.db.createDatabase(constants.DB_NAME).then(() => {  
             this.createCollection();
         }, err => {  
             console.error('Failed to create database:', err);
@@ -16,13 +21,11 @@ export class DatabaseMgr {
     }
 
     createCollection() {  
-        this.db.useDatabase(constants.dbName);
-        const collection = this.db.collection(constants.owCollection);
-        collection.create().then((result) => {  
-            console.log('Collection created', result);
-        }, err => {  
-            console.error('Failed to create collection:', err);
-        });   
+        const collection = this.db.collection(constants.OW_COLLECTION);
+        collection.create().then(
+            result => console.log('Collection created', result), 
+            err => console.error('Failed to create collection:', err)
+        );   
     }
 
     listDatases() {  
@@ -33,7 +36,7 @@ export class DatabaseMgr {
     }
 
     dropDatabase() {  
-        this.db.dropDatabase(constants.dbName).then(() => {  
+        this.db.dropDatabase(constants.DB_NAME).then(() => {  
             console.log('Database deleted');
         }, err => {  
             console.log("Can't delete database", err);

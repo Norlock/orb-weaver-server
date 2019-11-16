@@ -1,4 +1,5 @@
 export const constants = {  
-    owCollection: "ow_collection", 
-    dbName: "orb_weaver_db"
+    OW_COLLECTION: "ow_collection", 
+    DB_NAME: "orb_weaver_db",
+    PORT: 5000
 }
