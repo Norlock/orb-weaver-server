@@ -5,7 +5,7 @@
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
-!_TAG_PROGRAM_VERSION	0.0.0	/496721d2/
+!_TAG_PROGRAM_VERSION	0.0.0	/db4357d0/
 @babel/code-frame	package-lock.json	/^        "@babel\/code-frame": "^7.0.0",$/;"	s	object:dependencies.eslint.requires
 @babel/code-frame	package-lock.json	/^    "@babel\/code-frame": {$/;"	o	object:dependencies
 @babel/highlight	package-lock.json	/^        "@babel\/highlight": "^7.0.0"$/;"	s	object:dependencies.@babel/code-frame.requires
@@ -609,7 +609,7 @@ dev	package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.uri-js
 dev	package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.which
 dev	package-lock.json	/^      "dev": true,$/;"	b	object:dependencies.write
 devDependencies	package.json	/^  "devDependencies": {$/;"	o
-docker	package.json	/^    "docker": "sudo \/usr\/bin\/docker run -d -e ARANGO_ROOT_PASSWORD=openSesame --volumes-from /;"	s	object:scripts
+docker	package.json	/^    "docker": "sudo docker run -d -e ARANGO_ROOT_PASSWORD=openSesame -p 8529:8529 -v database:\//;"	s	object:scripts
 doctrine	package-lock.json	/^        "doctrine": "^3.0.0",$/;"	s	object:dependencies.eslint.requires
 doctrine	package-lock.json	/^    "doctrine": {$/;"	o	object:dependencies
 dom-walk	package-lock.json	/^        "dom-walk": "^0.1.0"$/;"	s	object:dependencies.min-document.requires
