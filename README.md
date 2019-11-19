@@ -2,6 +2,6 @@
 
 To start 
 * npm install
+* npm run docker
 * npm start
-* 
 

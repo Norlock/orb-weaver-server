@@ -7,7 +7,6 @@ const app = express();
 const dbMgr = new DatabaseMgr("root", "openSesame");
 const colMgr = new CollectionMgr(dbMgr.db);
 
-
 app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', 'http://localhost');
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -16,6 +15,7 @@ app.use((req, res, next) => {
 });
 
 function sendSuccesResponse(res, result) {  
+    console.log('cursor', result)
     res.status(200).send({
         success: true,
         result: result
@@ -41,11 +41,21 @@ app.get('/api/ow-nodes', (req, res) => {
 // get all todos
 app.get('/api/ow-nodes/:key', (req, res) => {
     const key = req.params.key;
+    const depth = 5;
+    // Get all 
 
-    colMgr.owCollection.document(key).then(
-        doc => sendSuccesResponse(res, JSON.stringify(doc)),
-        err => sendFailureResponse(res, 'Failed to fetch document', err)
-    );
+    colMgr.db.query('FOR d in ' + constants.OW_COLLECTION + ' WHERE d._key == ' + key).then(
+        cursor => {
+            sendSuccesResponse(res, cursor);
+        },
+        err => {
+            sendFailureResponse(res, "Werkt niet :(", err)
+        }
+    );    
+    //colMgr.owCollection.document(key).then(
+        //doc => sendSuccesResponse(res, JSON.stringify(doc)),
+        //err => sendFailureResponse(res, 'Failed to fetch document', err)
+    //);
 });
 
 app.listen(constants.PORT, () => {

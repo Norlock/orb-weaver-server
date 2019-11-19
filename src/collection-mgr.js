@@ -10,50 +10,60 @@ export class CollectionMgr {
         const baseUrl = 'http://localhost';
         const nodes = [];
 
-        const banNode = {  
+        nodes.push({  
             _key: 'blutausnord',
             name: 'Blut Aus Nord',
             image: baseUrl + '/images/blutausnord.jpg',
-            related: [
-                'deathspellomega',
-                'drudkh'
-            ]
-        };
+        });
 
-        const belakorNode = {  
+        nodes.push({  
+            _key: 'urfaust',
+            name: "Urfaust",
+            image: baseUrl + '/images/urfaust.jpg',
+            previous: 'blutausnord'
+        });
+
+        nodes.push({  
+            _key: 'mgla',
+            name: "Mgla",
+            image: baseUrl + '/images/mgla.jpg',
+            previous: 'urfaust'
+        });
+
+        nodes.push({  
+            _key: 'esoteric',
+            name: "Esoteric",
+            image: baseUrl + '/images/esoteric.jpg',
+            previous: 'urfaust'
+        });
+
+        nodes.push({  
+            _key: 'ruinsofbeverast',
+            name: "Ruins of Beverast",
+            image: baseUrl + '/images/mgla.jpg',
+            previous: 'esoteric'
+        });
+
+        nodes.push({  
             _key: 'belakor',
             name: "Be'lakor",
             image: baseUrl + '/images/belakor.jpg',
-            related: [
-                'insomnium',
-                'persefone'
-            ]
-        };
+            previous: 'blutausnord'
+        });
 
-        const gojiraNode = {  
+        nodes.push({  
             _key: 'gojira',
             name: "Gojira",
             image: baseUrl + '/images/gojira-dark.jpg',
-            related: [
-                'insomnium',
-                'persefone'
-            ]
-        };
+            previous: 'blutausnord'
+        });
 
-        const deathspellOmegaNode = {  
+        nodes.push({  
             _key: 'deathspellomega',
             name: "Deathspell Omega",
             image: baseUrl + '/images/deathspellomega.jpg',
-            related: [
-                'blutausnord',
-                'drudkh'
-            ]
-        };
-
-        nodes.push(banNode);
-        nodes.push(belakorNode);
-        nodes.push(deathspellOmegaNode);
-        nodes.push(gojiraNode);
+            previous: 'blutausnord'
+        });
 
         this.owCollection.import(nodes, { overwrite: true }).then(
             result => console.log('Import complete', result),

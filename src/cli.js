@@ -1,5 +1,5 @@
 import { DatabaseMgr } from './database-mgr.js';
-import {CollectionMgr} from './collection-mgr.js';
+import { CollectionMgr } from './collection-mgr.js';
 const readline = require('readline');
 
 const actions = {  
@@ -19,7 +19,7 @@ const rl = readline.createInterface({
 });
 
 function init() {  
-    rl.question("Database manager tool\n1: Initialise database\n2: Drop database\n3: Import collection"
+    rl.question("Database manager tool\n1: Create database\n2: Drop database\n3: Import collection"
         + "\n4: List collection\n0: Exit program\n\n", (answer) => {  
             switch (answer) {
                 case actions.INIT_DB:

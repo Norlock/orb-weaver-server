@@ -7,20 +7,21 @@ import { constants } from "./constants.js";
  **/
 export class DatabaseMgr {  
     constructor(username, password) {  
-        this.db = new Database();
+        this.db = new Database({url: 'http://root:@localhost:8529'});
         this.db.useBasicAuth(username, password);
-        this.db.useDatabase(constants.DB_NAME);
     }
 
     createDatabase() {  
-        this.db.createDatabase(constants.DB_NAME).then(() => {  
-            this.createCollection();
-        }, err => {  
-            console.error('Failed to create database:', err);
+        this.db.createDatabase(constants.DB_NAME, (err) => {  
+            if(err)
+                console.error('Failed to create database:', err);
+            else
+                this.createCollection();
         });   
     }
 
     createCollection() {  
+        this.db.useDatabase(constants.DB_NAME);
         const collection = this.db.collection(constants.OW_COLLECTION);
         collection.create().then(
             result => console.log('Collection created', result), 

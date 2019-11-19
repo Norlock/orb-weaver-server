@@ -13,7 +13,8 @@
     "eslint": "^6.6.0"
   },
   "scripts": {
-    "docker": "sudo docker run -d -e ARANGO_ROOT_PASSWORD=openSesame -p 8529:8529 -v database:/var/lib/arangodb arangodb",
+    "persistance": "sudo docker run -d --name arangodb-persist -v /var/lib/arangodb ubuntu:19.10 true",
+    "docker": "sudo docker run -d -e ARANGO_ROOT_PASSWORD=openSesame -p 8529:8529 --volumes-from arangodb-persist arangodb",
     "start": "node ./src/startServer.js",
     "cli": "node ./src/startCli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
