@@ -42,22 +42,22 @@ app.get('/api/ow-nodes', (req, res) => {
 app.get('/api/ow-nodes/:key', (req, res) => {
     const key = req.params.key;
     const depth = 5;
-    // Get all 
 
-    colMgr.db.query('FOR d in ' + constants.OW_COLLECTION + ' WHERE d._key == ' + key).then(
+    colMgr.db.query('FOR node in ' + constants.OW_COLLECTION + ' FILTER node._key == "' + key + '" RETURN node').then(
         cursor => {
+            const node = cursor.result;
             sendSuccesResponse(res, cursor);
         },
         err => {
             sendFailureResponse(res, "Werkt niet :(", err)
         }
     );    
-    //colMgr.owCollection.document(key).then(
-        //doc => sendSuccesResponse(res, JSON.stringify(doc)),
-        //err => sendFailureResponse(res, 'Failed to fetch document', err)
-    //);
 });
 
 app.listen(constants.PORT, () => {
   console.log(`server running on port ${constants.PORT}`)
 });
+
+function getRelatedNode(node) {
+
+}
