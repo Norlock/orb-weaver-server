@@ -15,7 +15,7 @@ export class CollectionMgr {
             _key: 'blutausnord',
             name: 'Blut Aus Nord',
             image: baseUrl + '/images/blutausnord.jpg',
-            genre: constants.genre.BLACK_METALs
+            genre: constants.genre.BLACK_METAL
         });
 
         nodes.push({  
